@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76cbcdd79efd1743af5a729e0f82628, type: 3}
+  m_Name: ManagerVarsContainer
+  m_EditorClassIdentifier: 
+  bgThemeSpriteList:
+  - {fileID: 21300000, guid: 9c7f8abaceea58e4db628c3935ed7c4a, type: 3}
+  - {fileID: 21300000, guid: 5feddf0396f8fd842b6a2034a343e884, type: 3}
+  - {fileID: 21300000, guid: 274864b118ac4f54589e32e7035cd77f, type: 3}
+  - {fileID: 21300000, guid: 81cb795749aefac4ea7663bc3f7f71fb, type: 3}
+  platformThemeSpriteList:
+  - {fileID: 21300002, guid: 20da7e56cbb26b3498b25fb61fa9a7ff, type: 3}
+  - {fileID: 21300012, guid: 20da7e56cbb26b3498b25fb61fa9a7ff, type: 3}
+  - {fileID: 21300004, guid: 20da7e56cbb26b3498b25fb61fa9a7ff, type: 3}
+  - {fileID: 21300000, guid: 20da7e56cbb26b3498b25fb61fa9a7ff, type: 3}
+  normalPlatform: {fileID: 1008687893231704, guid: d0e2ef263b8bdd3488bb4df22cfb8155,
+    type: 2}
+  normalPlatformPre: {fileID: 1807666484345724, guid: 3400117752f1e764991602fab1f00023,
+    type: 2}
+  nextXpos: 0.554
+  nextYpos: 0.645

@@ -26,6 +26,7 @@ public class MainPanel : MonoBehaviour {
     }
 
     private void OnStartButtonCilck() {
+        GameManager.Instance.IsGameStart = true;
         EventCenter.Broadcast(EventDefine.ShowGamePanel);
         gameObject.SetActive(false);
     }
