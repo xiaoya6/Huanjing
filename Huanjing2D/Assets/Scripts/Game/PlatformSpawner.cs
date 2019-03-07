@@ -16,7 +16,10 @@ public class PlatformSpawner : MonoBehaviour {
     private bool isLeftSpawn;
     private Sprite selectPlatformSprite;
     private PlatformGroupType groupType;
-
+    private Vector3 spikeDirPlatformPos;
+    private bool spikeSpawnLeft = false;
+    private int afterSpawnSpikeSpawnCount;
+    private bool isSpawnSpike;
     private void Awake()
     {
         EventCenter.AddListener(EventDefine.DecidePath,DecidePath);
@@ -55,9 +58,13 @@ public class PlatformSpawner : MonoBehaviour {
     }
 
     public void DecidePath() {
+        if (isSpawnSpike)
+        {
+            AfterSpawnSpike();
+            return;
+        }
         if (spawPlatformCount > 0)
         {
-
             spawPlatformCount--;
             SpawnPlatform();
         }
@@ -70,7 +77,52 @@ public class PlatformSpawner : MonoBehaviour {
 
     //生成平台
     private void SpawnPlatform() {
-        SpawnNormalPlatform();
+        int ranObstacleDir = Random.Range(0, 2);
+        //生成单个平台
+        if (spawPlatformCount >= 1)
+        {
+            SpawnNormalPlatform(ranObstacleDir);
+        }
+        //生成组合平台
+        else if(spawPlatformCount ==0){
+            int ram = Random.Range(0, 3);
+            if (ram == 0)
+            {
+                SpawnCommonPlatformGroup(ranObstacleDir);
+            }
+            else if (ram == 1) {
+                switch (groupType)
+                {
+                    case PlatformGroupType.grass:
+                        SpawnGrassPlatformGroup(ranObstacleDir);
+                        break;
+                    case PlatformGroupType.winter:
+                        SpawnWinterPlatformGroup(ranObstacleDir);
+                        break;
+                    default:
+                        break;
+                }
+            } else{
+                int value = -1;
+                if (isLeftSpawn)
+                {
+                    value = 0;//生成右边方向的钉子
+                }
+                else {
+                    value = 1;//生成左边方向的钉子
+                }
+                SpawnSpikePlatform(value);
+                isSpawnSpike = true;
+                afterSpawnSpikeSpawnCount = 4;
+                if (spikeSpawnLeft)
+                {//钉子在左边
+                    spikeDirPlatformPos = new Vector3(platformSpawnPosition.x - 1.65f, platformSpawnPosition.y + vars.nextYpos, 0);
+                }
+                else {
+                    spikeDirPlatformPos = new Vector3(platformSpawnPosition.x + 1.65f, platformSpawnPosition.y + vars.nextYpos, 0);
+                }
+            }
+        }
         if (isLeftSpawn)
         {
             platformSpawnPosition = new Vector3(platformSpawnPosition.x - vars.nextXpos, platformSpawnPosition.y + vars.nextYpos, 0);
@@ -83,9 +135,68 @@ public class PlatformSpawner : MonoBehaviour {
     /// <summary>
     /// 生成单个普通平台
     /// </summary>
-    private void SpawnNormalPlatform() {
+    private void SpawnNormalPlatform(int ranObstacleDir) {
         GameObject go = Instantiate(vars.normalPlatform, transform);
         go.transform.position = platformSpawnPosition;
-        go.GetComponent<PlatformScript>().Init(selectPlatformSprite);
+        go.GetComponent<PlatformScript>().Init(selectPlatformSprite, ranObstacleDir);
+    }
+
+    private void SpawnCommonPlatformGroup(int ranObstacleDir) {
+        int ran = Random.Range(0, vars.commonPlatformGroup.Count);
+        GameObject go = Instantiate(vars.commonPlatformGroup[ran], transform);
+        go.transform.position = platformSpawnPosition;
+        go.GetComponent<PlatformScript>().Init(selectPlatformSprite, ranObstacleDir);
+    }
+
+    private void SpawnGrassPlatformGroup(int ranObstacleDir)
+    {
+        int ran = Random.Range(0, vars.grassPlatformGroup.Count);
+        GameObject go = Instantiate(vars.grassPlatformGroup[ran], transform);
+        go.transform.position = platformSpawnPosition;
+        go.GetComponent<PlatformScript>().Init(selectPlatformSprite, ranObstacleDir);
+    }
+
+    private void SpawnWinterPlatformGroup(int ranObstacleDir)
+    {
+        int ran = Random.Range(0, vars.winterPlatformGroup.Count);
+        GameObject go = Instantiate(vars.winterPlatformGroup[ran], transform);
+        go.transform.position = platformSpawnPosition;
+        go.GetComponent<PlatformScript>().Init(selectPlatformSprite, ranObstacleDir);
+    }
+
+    private void SpawnSpikePlatform(int dir) {
+        GameObject go;
+        if (dir == 0)
+        {
+            spikeSpawnLeft = false;
+          go = Instantiate(vars.spikePlatformRight, transform);
+            
+        }
+        else {
+            spikeSpawnLeft = true;
+            go = Instantiate(vars.spkitePlatformLeft, transform);
+            
+        }
+
+        go.transform.position = platformSpawnPosition;
+        go.GetComponent<PlatformScript>().Init(selectPlatformSprite, 0);
+    }
+
+    /// <summary>
+    /// 生成钉子平台
+    /// </summary>
+    private void AfterSpawnSpike() {
+        if (afterSpawnSpikeSpawnCount > 0)
+        {
+            afterSpawnSpikeSpawnCount--;
+            for (int i = 0; i < 2; i++)
+            {
+
+            }
+        }
+        else {
+            isSpawnSpike = false;
+            DecidePath();
+        }
     }
 }

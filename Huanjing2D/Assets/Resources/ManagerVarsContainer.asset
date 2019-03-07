@@ -25,5 +25,21 @@ MonoBehaviour:
     type: 2}
   normalPlatformPre: {fileID: 1807666484345724, guid: 3400117752f1e764991602fab1f00023,
     type: 2}
+  commonPlatformGroup:
+  - {fileID: 1591522096419770, guid: 1205faa9864f2554c9c318da0f14c16e, type: 2}
+  - {fileID: 1939264514130486, guid: d865ee58f84420549867338d2a6ccc4b, type: 2}
+  - {fileID: 1807986326724460, guid: 8a5ff5869b4b9094a97ef21478184437, type: 2}
+  - {fileID: 1610554373836660, guid: 80fe83a58e4507540936f832d5ab4f04, type: 2}
+  grassPlatformGroup:
+  - {fileID: 1444124742509302, guid: 151813efd2811c946a7d8741bf0eaf8e, type: 2}
+  - {fileID: 1095945369758388, guid: 13eee3553486a044584907c68e9254c1, type: 2}
+  winterPlatformGroup:
+  - {fileID: 1760301509757358, guid: a878eb8a5534bc141987b9cdcc0859f4, type: 2}
+  - {fileID: 1909710339910646, guid: e2e85031256e16946a452c273c6b11b1, type: 2}
+  - {fileID: 1576327244849164, guid: b481c7177d25a7b419cf85ce42c56b49, type: 2}
+  spkitePlatformLeft: {fileID: 1796814451103962, guid: 75a8d8aa82364564e9674dea8319147f,
+    type: 2}
+  spikePlatformRight: {fileID: 1657205421713226, guid: 07d61a786fd5806489f5a159793aa4e2,
+    type: 2}
   nextXpos: 0.554
   nextYpos: 0.645

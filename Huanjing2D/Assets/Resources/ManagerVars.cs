@@ -12,6 +12,13 @@ public class ManagerVars : ScriptableObject {
     public List<Sprite> platformThemeSpriteList = new List<Sprite>();
     public GameObject normalPlatform;
     public GameObject normalPlatformPre;
+
+    public List<GameObject> commonPlatformGroup = new List<GameObject>();
+    public List<GameObject> grassPlatformGroup = new List<GameObject>();
+    public List<GameObject> winterPlatformGroup = new List<GameObject>();
+    public GameObject spkitePlatformLeft;
+    public GameObject spikePlatformRight;
+
     public float nextXpos = 0.554f;
     public float nextYpos = 0.645f;
 }

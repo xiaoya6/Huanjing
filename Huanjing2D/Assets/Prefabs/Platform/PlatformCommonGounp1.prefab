@@ -186,6 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderers:
   - {fileID: 212226983106738366}
+  obstacle: {fileID: 0}
 --- !u!212 &212226983106738366
 SpriteRenderer:
   m_ObjectHideFlags: 1
